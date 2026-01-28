@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect, useRef } from 'react';
 import Layout from './components/Layout';
 import { AppStep } from './types';
@@ -94,7 +93,8 @@ const ModelInteractiveSection: React.FC<{
             <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 border-b border-gray-100 pb-10">
               <div className="flex items-center gap-8">
                 <div className={`w-24 h-24 ${selectedStage.color} rounded-[2.5rem] flex items-center justify-center shrink-0 shadow-inner`}>
-                  {React.cloneElement(selectedStage.icon as React.ReactElement, { className: "w-10 h-10" })}
+                  {/* Fixed TypeScript error by adding <any> to ReactElement cast to allow className property */}
+                  {React.cloneElement(selectedStage.icon as React.ReactElement<any>, { className: "w-10 h-10" })}
                 </div>
                 <div>
                   <h4 className="text-4xl font-black text-primary uppercase tracking-tighter leading-none mb-2">{selectedStage.title}</h4>
@@ -435,7 +435,7 @@ const App: React.FC = () => {
         return (
           <div className="space-y-8 animate-in slide-in-from-right duration-500">
             <div className="border-l-4 border-primary pl-6">
-               <h3 className="text-3xl font-black text-primary italic underline decoration-teal-400 uppercase">PSF 2023 Practice Lab</h3>
+               <h3 className="text-3xl font-black text-primary italic underline decoration-teal-400 uppercase">PSF 2023 Practise Lab</h3>
                <p className="text-gray-500 font-medium">Get a coaching critique on your reflection based on the models and PSF 2023.</p>
             </div>
             
@@ -443,7 +443,7 @@ const App: React.FC = () => {
               <div className="lg:col-span-1 space-y-6">
                 <div className="bg-white p-6 rounded-3xl shadow-sm space-y-4 border border-gray-100">
                   <label className="block">
-                    <span className="text-xs font-black uppercase tracking-widest text-gray-400 mb-2 block">Your role and/or discipline</span>
+                    <span className="text-xs font-black uppercase tracking-widest text-gray-400 mb-2 block">Your Role and/or Discipline</span>
                     <input 
                       type="text" 
                       placeholder="e.g. Senior Lecturer in Fine Art..."
@@ -453,14 +453,14 @@ const App: React.FC = () => {
                     />
                   </label>
                   <label className="block">
-                    <span className="text-xs font-black uppercase tracking-widest text-gray-400 mb-2 block italic underline decoration-teal-300">Share your experience for coaching</span>
+                    <span className="text-xs font-black uppercase tracking-widest text-gray-400 mb-2 block italic underline decoration-teal-300">Share Your Experience for Coaching</span>
                     <p className="text-[10px] text-gray-400 mb-3 leading-tight uppercase font-black tracking-tighter bg-gray-50 p-3 rounded-lg border border-gray-100">
                       Write freely about a teaching or support experience below. The coach will critique your reflection and help you align it with the PSF and deeper reflective models. 
                       <span className="text-teal-600 block mt-1">Don't worry about perfect phrasing; focus on the 'What', 'So What', and 'Now What'.</span>
                     </p>
                     <textarea 
                       rows={6}
-                      placeholder="I was teaching a session on..."
+                      placeholder="I was teaching/supporting a session on.../I was leading a project on...."
                       className="mt-1 block w-full rounded-xl border-gray-200 bg-gray-50 px-4 py-3 focus:ring-primary focus:border-primary font-medium text-sm leading-relaxed"
                       value={userContext}
                       onChange={(e) => setUserContext(e.target.value)}
@@ -483,14 +483,14 @@ const App: React.FC = () => {
                     <div className="border-b border-gray-100 pb-8">
                        <div className="flex items-center space-x-3 mb-4">
                          <BrainCircuit className="w-7 h-7 text-teal-500" />
-                         <h4 className="text-xs font-black uppercase text-teal-600 tracking-widest">COACHING FEEDBACK & CRITIQUE</h4>
+                         <h4 className="text-xs font-black text-teal-600 tracking-widest uppercase">Coaching Feedback & Critique</h4>
                        </div>
                        <p className="text-xl text-primary font-bold leading-relaxed">{advice.analysis}</p>
                     </div>
                     
                     <div className="bg-blue-50/50 p-8 rounded-[2.5rem] border border-blue-100">
-                       <h4 className="text-[10px] font-black uppercase text-blue-500 mb-4 flex items-center gap-2 tracking-[0.2em]">
-                         <ShieldCheck className="w-4 h-4" /> PSF 2023 DIMENSION MAPPING
+                       <h4 className="text-[10px] font-black text-blue-500 mb-4 flex items-center gap-2 tracking-[0.2em] uppercase">
+                         <ShieldCheck className="w-4 h-4" /> PSF 2023 Dimension Mapping
                        </h4>
                        <div className="flex flex-wrap gap-3">
                          {advice.tips.map((tip: string, i: number) => (
@@ -502,8 +502,8 @@ const App: React.FC = () => {
                     </div>
 
                     <div className="bg-primary p-10 rounded-[3rem] text-white relative overflow-hidden shadow-2xl">
-                       <h4 className="text-[10px] font-black uppercase text-teal-400 mb-6 flex items-center gap-2 tracking-[0.3em]">
-                         <Zap className="w-4 h-4" /> CRITICAL COACHING QUESTIONS
+                       <h4 className="text-[10px] font-black text-teal-400 mb-6 flex items-center gap-2 tracking-[0.3em] uppercase">
+                         <Zap className="w-4 h-4" /> Critical Coaching Questions
                        </h4>
                        <ul className="space-y-6 relative z-10">
                           {advice.questions.map((q: string, i: number) => (
@@ -520,7 +520,7 @@ const App: React.FC = () => {
                     
                     <div className="p-6 bg-gray-50 rounded-2xl border border-gray-100 text-center">
                       <p className="text-[9px] text-gray-400 font-black uppercase tracking-[0.3em] leading-tight">
-                        IMPORTANT: THE PRACTICE LAB PROVIDES COACHING CRITIQUE. <br/> DRAFT YOUR APPLICATION CLAIM IN YOUR OWN PROFESSIONAL VOICE.
+                        IMPORTANT: THE PRACTISE LAB PROVIDES COACHING CRITIQUE. <br/> DRAFT YOUR APPLICATION CLAIM IN YOUR OWN PROFESSIONAL VOICE.
                       </p>
                     </div>
                   </div>
